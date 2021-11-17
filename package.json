@@ -1,0 +1,33 @@
+{
+  "name": "fullstackjs_tutorial",
+  "version": "1.0.0",
+  "description": "fullstack tutorial using nodejs backend ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martysen/fullstack_tutorial.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "html",
+    "css",
+    "vanillaJS",
+    "mysql"
+  ],
+  "author": "AmartyaSOU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martysen/fullstack_tutorial/issues"
+  },
+  "homepage": "https://github.com/martysen/fullstack_tutorial#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
+}
