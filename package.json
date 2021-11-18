@@ -26,6 +26,7 @@
   "homepage": "https://github.com/martysen/fullstack_tutorial#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "handlebars": "^4.7.7",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
     "uuid": "^8.3.2"
