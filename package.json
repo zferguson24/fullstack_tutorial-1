@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/martysen/fullstack_tutorial#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
     "mysql": "^2.18.1",
