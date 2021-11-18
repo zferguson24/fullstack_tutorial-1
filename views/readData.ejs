@@ -9,13 +9,12 @@
     />
     <title>Full Stack Demo</title>
 
-    <!-- <link type="text/css" href="/style.css" /> -->
+    <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
   </head>
   <body>
     <header id="main-header" class="bg-success text-white p-4 mb-3">
       <h1>Full Stack Demo Tutorial</h1>
     </header>
-    <hr />
 
     <div class="container">
       <main>
@@ -34,15 +33,14 @@
         </ul>
       </main>
     </div>
-    <hr />
 
     <div class="container">
       <h3>CRUD ops - READ</h3>
       <h4>Read Data from The Database</h4>
-      <div class="box">
-        <ul>
+      <div class="card card-body">
+        <ul class="list-group">
           <%data.forEach((item)=>{%>
-          <li>
+          <li class="list-group-item">
             id: <%=item.id%> &nbsp; Name: <%= item.name%> &nbsp; Email:
             <%=item.email%>
           </li>

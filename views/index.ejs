@@ -9,42 +9,42 @@
     />
     <title>Full Stack Demo</title>
 
-    <!-- <link type="text/css" href="/style.css" /> -->
+    <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
   </head>
   <body>
     <header id="main-header" class="bg-success text-white p-4 mb-3">
-      <h1>Full Stack Demo Tutorial</h1>
+      <h1 id="header-title">Full Stack Demo Tutorial</h1>
     </header>
-    <hr />
 
     <div class="container">
       <main>
-        <h2>
+        <h2 class="title">
           This page contains the demo of the four CRUD operations executed
           against a Full Stack Web App
         </h2>
         <p>The application was created using the following technologies</p>
-        <ul>
-          <li>Front End -- HTML, CSS, Vanilla JS</li>
-          <li>
+        <ul class="list-group">
+          <li class="list-group-item">Front End -- HTML, CSS, Vanilla JS</li>
+          <li class="list-group-item">
             Back End -- Node.js with server-side framework express.js and
             embedded javascript for server side content rendering
           </li>
-          <li>Database -- MySQL server community edition version 8.0</li>
+          <li class="list-group-item">
+            Database -- MySQL server community edition version 8.0
+          </li>
         </ul>
       </main>
     </div>
-    <hr />
 
     <div class="container">
       <h3>CRUD ops - CREATE</h3>
       <h4>Insert Data into The Database</h4>
-      <div class="box">
+      <div id="main" class="card card-body">
         <form
+          class="form-inline mb-3"
           action="/insertstudents/"
           method="post"
           id="CRUDcreate"
-          class="crud"
         >
           <label for="studentName">Student Name: </label>
           <input
@@ -54,6 +54,7 @@
             size="200"
             required
             autocomplete="off"
+            class="form-control mr-2"
           />
           <br />
           <label for="studentEmail">Student Email: </label>
@@ -64,40 +65,34 @@
             size="200"
             required
             autocomplete="off"
+            class="form-control mr-2"
           />
           <br />
-          <input
-            type="submit"
-            value="SUBMIT"
-            class="btn btn-primary btn-block"
-          />
-          <input type="reset" value="RESET" />
+          <input type="submit" value="SUBMIT" class="btn btn-dark" />
+          <input type="reset" value="RESET" class="btn btn-dark" />
         </form>
       </div>
     </div>
-
-    <hr />
 
     <div class="container">
       <h3>CRUD ops - READ</h3>
       <h4>Read Data from The Database</h4>
-      <div class="box">
-        <form action="/readstudents" method="get" id="CRUDread" class="crud">
-          <input
-            type="submit"
-            value="SUBMIT"
-            class="btn btn-primary btn-block"
-          />
+      <div id="main" class="card card-body">
+        <form
+          class="form-inline mb-3"
+          action="/readstudents"
+          method="get"
+          id="CRUDread"
+        >
+          <input type="submit" value="SUBMIT" class="btn btn-dark" />
         </form>
       </div>
     </div>
 
-    <hr />
-
     <div class="container">
       <h3>CRUD ops - UPDATE</h3>
       <h4>Update Data in The Database</h4>
-      <div class="box">
+      <div id="main" class="card card-body">
         <form
           action="/updatestudents"
           method="post"
@@ -112,6 +107,7 @@
             size="200"
             required
             autocomplete="off"
+            class="form-control mr-2"
           />
           <br />
           <label for="studentNewEmailUpdate">Enter New Student Email: </label>
@@ -122,29 +118,24 @@
             size="200"
             required
             autocomplete="off"
+            class="form-control mr-2"
           />
           <br />
-          <input
-            type="submit"
-            value="SUBMIT"
-            class="btn btn-primary btn-block"
-          />
-          <input type="reset" value="RESET" />
+          <input type="submit" value="SUBMIT" class="btn btn-dark" />
+          <input type="reset" value="RESET" class="btn btn-dark" />
         </form>
       </div>
     </div>
 
-    <hr />
-
     <div class="container">
       <h3>CRUD ops - DELETE</h3>
       <h4>delete Data into The Database</h4>
-      <div class="box">
+      <div id="main" class="card card-body">
         <form
           action="/deletestudents"
           method="post"
           id="CRUDdelete"
-          class="crud"
+          class="form-inline mb-3"
         >
           <label for="studentEmail">Confirm Student Email For deletion: </label>
           <input
@@ -154,14 +145,11 @@
             size="200"
             required
             autocomplete="off"
+            class="form-control mr-2"
           />
           <br />
-          <input
-            type="submit"
-            value="SUBMIT"
-            class="btn btn-primary btn-block"
-          />
-          <input type="reset" value="RESET" />
+          <input type="submit" value="SUBMIT" class="btn btn-dark" />
+          <input type="reset" value="RESET" class="btn btn-dark" />
         </form>
       </div>
     </div>

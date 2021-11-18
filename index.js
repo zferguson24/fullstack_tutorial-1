@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true })); // to parse HTML form data
 
 // Initialize ejs Middleware
 app.set("view engine", "ejs");
-// app.use(express.static(__dirname + "/public"));
+app.use("/public", express.static(__dirname + "/public"));
 
 // routes
 app.get("/", (req, res) => {
