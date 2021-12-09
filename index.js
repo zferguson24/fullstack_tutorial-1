@@ -10,7 +10,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root123",
-  database: "testfullstack_students", // comment out if running example 1
+  database: "mydb", // comment out if running example 1
 });
 
 // Establish connection with the DB
@@ -35,39 +35,45 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/insertstudents", (req, res) => {
-  let data = { name: req.body.studentName, email: req.body.studentEmail };
-  let sql = `INSERT INTO students SET ?`;
+
+// Add eBook Logic
+app.get("/addebook", (req, res) => {
+    res.render("addeBook");
+});
+
+app.post("/insertebook", (req, res) => {
+  let data = {EBOOK_TITLE: req.body.eBookTitle, EBOOK_ISBN: req.body.eBookISBN, EBOOK_AUTHOR: req.body.eBookAuthor,
+    EBOOK_GENRE: req.body.eBookGenre, EBOOK_PRICE: req.body.eBookPrice, EBOOK_DESC: req.body.eBookDesc, 
+    EBOOK_PUB: req.body.eBookPub};
+  let sql = `INSERT INTO EBOOK SET ?`;
   let query = db.query(sql, data, (err, result) => {
     if (err) {
       throw err;
     }
-    res.send(`student entry was inserted to the db...`);
+    res.send(`eBook successfully inserted into the database.`);
   });
 });
 
-app.post("/updatestudents", (req, res) => {
-  let sql = `UPDATE students SET email = '${req.body.studentNewEmailUpdate}'  WHERE id = ${req.body.studentID}`;
-  db.query(sql, (err, result) => {
+// Create Account Logic
+app.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+app.post("/insertuser", (req, res) => {
+  let sql = `INSERT INTO USER SET USER_EMAIL = '${req.body.userEmail}', USER_PASSWORD = sha1('${req.body.userPassword}'), 
+  USER_FNAME = '${req.body.userFname}', USER_LNAME = '${req.body.userLname}', USER_DOB = '${req.body.userDOB}',
+  USER_DATEJOIN = now(), USER_ADMIN = 0;`;
+  let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
     }
-    res.send(`student entry was updated in the db...`);
+    res.send(`Account has been created successfully.`);
   });
 });
 
-app.post("/deletestudents", (req, res) => {
-  let sql = `DELETE FROM students WHERE email = '${req.body.studentEmail}'`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    res.send(`student entry was deleted in the db...`);
-  });
-});
 
-app.get("/readstudents", (req, res) => {
-  let sql = `SELECT * FROM students`;
+app.get("/readebook", (req, res) => {
+  let sql = `SELECT * FROM EBOOK`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;

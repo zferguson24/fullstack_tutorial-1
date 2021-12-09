@@ -7,45 +7,55 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Full Stack Demo</title>
+    <title>Ace's eBookstore</title>
 
     <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
   </head>
   <body>
-    <header id="main-header" class="bg-success text-white p-4 mb-3">
-      <h1>Full Stack Demo Tutorial</h1>
+    <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
+      <h1 class='text-center'>Ace's eBookstore</h1>
     </header>
-
-    <div class="container">
-      <main>
-        <h2>
-          This page contains the demo of the four CRUD operations executed
-          against a Full Stack Web App
-        </h2>
-        <p>The application was created using the following technologies</p>
-        <ul>
-          <li>Front End -- HTML, CSS, Vanilla JS</li>
-          <li>
-            Back End -- Node.js with server-side framework express.js and
-            embedded javascript for server side content rendering
-          </li>
-          <li>Database -- MySQL server community edition version 8.0</li>
-        </ul>
-      </main>
-    </div>
 
     <div class="container">
       <h3>CRUD ops - READ</h3>
       <h4>Read Data from The Database</h4>
       <div class="card card-body">
-        <ul class="list-group">
+          <table class="table-bordered">
+            <tr>
+              <th class="text-center">ID</th>
+              <th class="text-center">Title</th>
+              <th class="text-center">ISBN</th>
+              <th class="text-center">Author</th>
+              <th class="text-center">Genre</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Publication Date</th>
+            </tr>
           <%data.forEach((item)=>{%>
-          <li class="list-group-item">
-            id: <%=item.id%> &nbsp; Name: <%= item.name%> &nbsp; Email:
-            <%=item.email%>
-          </li>
-          <%});%>
-        </ul>
+            <tr>
+              <td class="text-center">
+                <%=item.EBOOK_ID%> &nbsp;
+              </td>
+              <td>
+                <%=item.EBOOK_TITLE%> &nbsp;
+              </td>
+              <td>
+                <%=item.EBOOK_ISBN%> &nbsp;
+              </td>
+              <td>
+                <%=item.EBOOK_AUTHOR%> &nbsp;
+              </td>
+              <td>
+                <%=item.EBOOK_GENRE%> &nbsp;
+              </td>     
+              <td>
+                $<%=item.EBOOK_PRICE%> &nbsp;
+              </td>
+              <td>
+                <%=Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: '2-digit'}).format(item.EBOOK_PUB) %>
+              </td>
+            </tr>
+            <%});%>
+          </table>
       </div>
     </div>
   </body>

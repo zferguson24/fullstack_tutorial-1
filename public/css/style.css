@@ -43,6 +43,7 @@
   --bs-dark: #212529;
   --bs-primary-rgb: 26, 188, 156;
   --bs-secondary-rgb: 44, 62, 80;
+  --bs-header-rgb: 73, 80, 87;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
@@ -82,6 +83,11 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Self-Added Classes */
+
+
+
 
 body {
   margin: 0;
@@ -8159,6 +8165,14 @@ fieldset:disabled .btn {
 
 .text-opacity-100 {
   --bs-text-opacity: 1;
+}
+
+.bg-header {
+  --bs-bg-opacity: 1;
+  background-color: rgba(
+    var(--bs-header-rgb),
+    var(--bs-bg-opacity)
+  ) !important;
 }
 
 .bg-primary {
