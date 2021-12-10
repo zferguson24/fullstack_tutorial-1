@@ -10,7 +10,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root123",
-  database: "mydb", // comment out if running example 1
+  database: "mydb",
 });
 
 // Establish connection with the DB
@@ -68,6 +68,53 @@ app.post("/insertuser", (req, res) => {
       throw err;
     }
     res.send(`Account has been created successfully.`);
+  });
+});
+
+// Search eBook Logic
+app.post("/searchebook", (req, res) => {
+  let sql = `SELECT * FROM EBOOK WHERE EBOOK_TITLE LIKE '%${req.body.eBookTitleSearch}%' `;
+
+  // Add EBOOK_AUTHOR to query if nonempty.
+  if (req.body.eBookAuthorCheck && req.body.eBookAuthorSearch != undefined) {
+    sql = sql + `AND EBOOK_AUTHOR LIKE '%${req.body.eBookAuthorSearch}%' `;
+  }
+  // Add EBOOK_GENRE to query if nonempty.
+  if (req.body.eBookGenreCheck && req.body.eBookGenreSearch != undefined) {
+    sql = sql + `AND EBOOK_GENRE LIKE '%${req.body.eBookGenreSearch}%' `;
+  }
+  // Add EBOOK_PRICE to query if nonempty.
+  if (req.body.eBookPriceCheck && req.body.eBookPriceSearch != undefined) {
+    sql = sql + `AND EBOOK_PRICE LIKE '%${req.body.eBookPriceSearch}%' `;
+  }
+  // Add EBOOK_PUB to query if nonempty.
+  if (req.body.eBookPublishDateCheck && req.body.eBookPublishDateSearch != undefined) {
+    sql = sql + `AND EBOOK_PUB = '${req.body.eBookPublishDateSearch}' `;
+  }
+
+  sql = sql + `;`;
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.render("searchResults", { data: result });
+  });
+});
+
+
+// Search User Logic
+app.get("/usersearch", (req, res) => {
+  res.render("userSearch");
+});
+
+app.post("/searchuser", (req, res) => {
+  let sql = `SELECT * FROM USER WHERE USER_EMAIL = '${req.body.userSearch}';`;
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.render("readUser", { data: result });
   });
 });
 

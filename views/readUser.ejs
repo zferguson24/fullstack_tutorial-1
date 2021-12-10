@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Ace's eBookstore</title>
+
+    <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
+  </head>
+  <body>
+    <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
+      <h1 class='text-center'>Ace's eBookstore</h1>
+    </header>
+
+    <div class="container">
+      <h3>CRUD ops - READ</h3>
+      <h4>Read Data from The Database</h4>
+      <div class="card card-body">
+          <table class="table-bordered">
+            <tr>
+              <th class="text-center">ID</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">First Name</th>
+              <th class="text-center">Last Name</th>
+              <th class="text-center">Birthday</th>
+              <th class="text-center">Date of Creation</th>
+              <th class="text-center">Admin Status</th>
+            </tr>
+          <%data.forEach((item)=>{%>
+            <tr>
+              <td class="text-center">
+                <%=item.USER_ID%> &nbsp;
+              </td>
+              <td>
+                <%=item.USER_EMAIL%> &nbsp;
+              </td>
+              <td>
+                <%=item.USER_FNAME%> &nbsp;
+              </td>
+              <td>
+                <%=item.USER_LNAME%> &nbsp;
+              </td>     
+              <td>
+                <%=Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: '2-digit'}).format(item.USER_DOB)%> &nbsp;
+              </td>
+              <td>
+                <%=Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: '2-digit'}).format(item.USER_DATEJOIN)%> &nbsp;
+              </td>
+              <td>
+                <%=item.USER_ADMIN%>
+              </td>
+            </tr>
+            <%});%>
+          </table>
+      </div>
+    </div>
+  </body>
+</html>

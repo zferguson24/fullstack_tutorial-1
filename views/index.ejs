@@ -1,157 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Ace's eBookstore</title>
 
-    <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
-  </head>
-  <body>
-    <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
-      <h1 class='text-center'>Ace's eBookstore</h1>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Ace's eBookstore</title>
 
-    <div class="container">
-      <main>
-        <h2 class="title">
-          This page contains the demo of the four CRUD operations executed
-          against a Full Stack Web App
-        </h2>
-        <p>The application was created using the following technologies</p>
-        <ul class="list-group">
-          <li class="list-group-item">Front End -- HTML, CSS, Vanilla JS</li>
-          <li class="list-group-item">
-            Back End -- Node.js with server-side framework express.js and
-            embedded javascript for server side content rendering
-          </li>
-          <li class="list-group-item">
-            Database -- MySQL server community edition version 8.0
-          </li>
-        </ul>
-      </main>
-    </div>
+  <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
+</head>
 
-    <div class="container">
-      <h3>CRUD ops - CREATE</h3>
-      <h4>Insert Data into The Database</h4>
-      <div id="main" class="card card-body">
-        <form
-          class="form-inline mb-3"
-          action="/insertstudents/"
-          method="post"
-          id="CRUDcreate"
-        >
-          <label for="studentName">Student Name: </label>
-          <input
-            type="text"
-            name="studentName"
-            placeholder="Enter your Name"
-            size="200"
-            required
-            autocomplete="off"
-            class="form-control mr-2"
-          />
-          <br />
-          <label for="studentEmail">Student Email: </label>
-          <input
-            type="text"
-            name="studentEmail"
-            placeholder="Enter your Email"
-            size="200"
-            required
-            autocomplete="off"
-            class="form-control mr-2"
-          />
-          <br />
-          <input type="submit" value="SUBMIT" class="btn btn-dark" />
-          <input type="reset" value="RESET" class="btn btn-dark" />
-        </form>
-      </div>
-    </div>
+<body>
+  <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
+    <h1 class='text-center'>Ace's eBookstore</h1>
+  </header>
 
-    <div class="container">
-      <h3>CRUD ops - READ</h3>
-      <h4>Read Data from The Database</h4>
-      <div id="main" class="card card-body">
-        <form
-          class="form-inline mb-3"
-          action="/readstudents"
-          method="get"
-          id="CRUDread"
-        >
-          <input type="submit" value="SUBMIT" class="btn btn-dark" />
-        </form>
-      </div>
-    </div>
+  <div class="container">
+    <main>
+      <h2 class="title">
+        Welcome to Ace's eBookstore. Please search for an eBook below!
+      </h2>
+      <br />
+      <form class="form-inline mb-3" action="/searchebook/" method="post" id="EBOOKsearch">
+        <label for="eBookTitleSearch" class="h4">Search eBooks by Title</label>
+        <input type="text" name="eBookTitleSearch" placeholder="Enter eBook Title" required autocomplete="off"
+          class="form-control mr-2" />
+        <br />
+        <h4>Refine Your Search With Other Filters Here</h4>
+        <div class="card card-body">
+          <div class="checkbox">
+            <label for="eBookAuthorSearch">
+              <input type="checkbox" name="eBookAuthorCheck" class="form-check-inline" id="authorCheckbox" />
+              Author</label>
+            <input type="text" name="eBookAuthorSearch" placeholder="Enter eBook Author" autocomplete="off"
+              class="form-control mr-2 mt-2" id="authorInput" disabled />
+            <br />
+          </div>
+          <div class="checkbox">
+            <label for="eBookGenreSearch">
+              <input type="checkbox" name="eBookGenreCheck" class="form-check-inline" id="genreCheckbox" />
+              Genre</label>
+            <input type="text" name="eBookGenreSearch" placeholder="Enter eBook Genre" autocomplete="off"
+              class="form-control mr-2 mt-2" id="genreInput" disabled />
+            <br />
+          </div>
+          <div class="checkbox">
+            <label for="eBookPriceSearch">
+              <input type="checkbox" name="eBookPriceCheck" class="form-check-inline" id="priceCheckbox" />
+              Price</label>
+            <input type="text" name="eBookPriceSearch" placeholder="Enter eBook Price" autocomplete="off"
+              class="form-control mr-2 mt-2" id="priceInput" disabled />
+            <br />
+          </div>
+          <div class="checkbox">
+            <label for="eBookPublishDateSearch">
+              <input type="checkbox" name="eBookPublishDateCheck" class="form-check-inline" id="pubCheckbox" />
+              Publish Date</label>
+            <input type="date" name="eBookPublishDateSearch" placeholder="Enter Publish Date" autocomplete="off"
+              class="form-control mr-2 mt-2" id="pubInput" disabled />
+            <br />
+          </div>
+        </div>
+        <br />
+        <input type="submit" value="SEARCH" class="btn btn-dark" />
+        <input type="reset" value="RESET" class="btn btn-dark" />
+        <br />
+      </form>
+    </main>
+  </div>
+</body>
 
-    <div class="container">
-      <h3>CRUD ops - UPDATE</h3>
-      <h4>Update Data in The Database</h4>
-      <div id="main" class="card card-body">
-        <form
-          action="/updatestudents"
-          method="post"
-          id="CRUDupdate"
-          class="crud"
-        >
-          <label for="studentID">Search By Student ID: </label>
-          <input
-            type="text"
-            name="studentID"
-            placeholder="Enter Student ID"
-            size="200"
-            required
-            autocomplete="off"
-            class="form-control mr-2"
-          />
-          <br />
-          <label for="studentNewEmailUpdate">Enter New Student Email: </label>
-          <input
-            type="text"
-            name="studentNewEmailUpdate"
-            placeholder="Enter New Email ID"
-            size="200"
-            required
-            autocomplete="off"
-            class="form-control mr-2"
-          />
-          <br />
-          <input type="submit" value="SUBMIT" class="btn btn-dark" />
-          <input type="reset" value="RESET" class="btn btn-dark" />
-        </form>
-      </div>
-    </div>
-
-    <div class="container">
-      <h3>CRUD ops - DELETE</h3>
-      <h4>delete Data into The Database</h4>
-      <div id="main" class="card card-body">
-        <form
-          action="/deletestudents"
-          method="post"
-          id="CRUDdelete"
-          class="form-inline mb-3"
-        >
-          <label for="studentEmail">Confirm Student Email For deletion: </label>
-          <input
-            type="text"
-            name="studentEmail"
-            placeholder="Enter your Email"
-            size="200"
-            required
-            autocomplete="off"
-            class="form-control mr-2"
-          />
-          <br />
-          <input type="submit" value="SUBMIT" class="btn btn-dark" />
-          <input type="reset" value="RESET" class="btn btn-dark" />
-        </form>
-      </div>
-    </div>
-  </body>
 </html>
+<script>
+  document.getElementById('authorCheckbox').onchange = function () {
+    document.getElementById('authorInput').disabled = !this.checked;
+  };
+  document.getElementById('genreCheckbox').onchange = function () {
+    document.getElementById('genreInput').disabled = !this.checked;
+  };
+  document.getElementById('priceCheckbox').onchange = function () {
+    document.getElementById('priceInput').disabled = !this.checked;
+  };
+  document.getElementById('pubCheckbox').onchange = function () {
+    document.getElementById('pubInput').disabled = !this.checked;
+  };
+</script>
