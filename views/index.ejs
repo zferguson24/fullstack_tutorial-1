@@ -17,11 +17,16 @@
 
   <div class="container">
     <main>
-      <h2 class="title">
+      <h2 class="title mb-4">
         Welcome to Ace's eBookstore. Please search for an eBook below!
       </h2>
-      <br />
+      <div class="row">
+        <div class="text-center">
+          <a href="/readebook" action="/readebook/" method="get" class="btn btn-info">SEE ALL EBOOKS!</a>
+        </div>
+      </div>
       <form class="form-inline mb-3" action="/searchebook/" method="post" id="EBOOKsearch">
+        <br />
         <label for="eBookTitleSearch" class="h4">Search eBooks by Title</label>
         <input type="text" name="eBookTitleSearch" placeholder="Enter eBook Title" required autocomplete="off"
           class="form-control mr-2" />

@@ -92,7 +92,8 @@ app.post("/searchebook", (req, res) => {
     sql = sql + `AND EBOOK_PUB = '${req.body.eBookPublishDateSearch}' `;
   }
 
-  sql = sql + `;`;
+  // Order the final output by title of the returned eBooks.
+  sql = sql + ` ORDER BY EBOOK_TITLE;`;
 
   db.query(sql, (err, result) => {
     if (err) {
@@ -109,7 +110,7 @@ app.get("/usersearch", (req, res) => {
 });
 
 app.post("/searchuser", (req, res) => {
-  let sql = `SELECT * FROM USER WHERE USER_EMAIL = '${req.body.userSearch}';`;
+  let sql = `SELECT * FROM USER WHERE USER_EMAIL LIKE '%${req.body.userSearch}%';`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -118,9 +119,46 @@ app.post("/searchuser", (req, res) => {
   });
 });
 
+// Update User Logic
+app.post("/updateuser", (req, res) => {
+  let sql = `UPDATE USER SET `;
 
+  // Update USER_EMAIL if nonempty.
+  if (req.body.userEmail != undefined) {
+    sql = sql + `USER_EMAIL = '${req.body.userEmail}', `;
+  }
+  // Update USER_FNAME if nonempty.
+  if (req.body.userFname != undefined) {
+    sql = sql + `USER_FNAME = '${req.body.userFname}', `;
+  }
+  // Update USER_LNAME if nonempty.
+  if (req.body.userLname != undefined) {
+    sql = sql + `USER_LNAME = '${req.body.userLname}', `;
+  }
+  // Update USER_DOB if nonempty.
+  if (req.body.userDOB != undefined) {
+    sql = sql + `USER_DOB = '${req.body.userDOB}' `;
+  }
+
+  // Deal with potentially having an extra, incorrect comma.
+  if (sql.slice(-1) == `,`) {
+    sql = sql.substring(0, sql.length - 1);
+  }
+
+  // Add WHERE clause to UPDATE to pick the correct user.
+  sql = sql + ` WHERE USER_ID = '${req.body.userID}';`;
+
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(`User has been updated successfully.`);
+  });
+});
+
+// Shows entire EBOOK table.
 app.get("/readebook", (req, res) => {
-  let sql = `SELECT * FROM EBOOK`;
+  let sql = `SELECT * FROM EBOOK ORDER BY EBOOK_TITLE;`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;

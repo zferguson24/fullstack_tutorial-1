@@ -1,62 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Ace's eBookstore</title>
 
-    <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
-  </head>
-  <body>
-    <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
-      <h1 class='text-center'>Ace's eBookstore</h1>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Ace's eBookstore</title>
 
-    <div class="container">
-      <h3>CRUD ops - READ</h3>
-      <h4>Read Data from The Database</h4>
-      <div class="card card-body">
-          <table class="table-bordered">
-            <tr>
-              <th class="text-center">ID</th>
-              <th class="text-center">Email</th>
-              <th class="text-center">First Name</th>
-              <th class="text-center">Last Name</th>
-              <th class="text-center">Birthday</th>
-              <th class="text-center">Date of Creation</th>
-              <th class="text-center">Admin Status</th>
-            </tr>
-          <%data.forEach((item)=>{%>
-            <tr>
-              <td class="text-center">
-                <%=item.USER_ID%> &nbsp;
-              </td>
-              <td>
-                <%=item.USER_EMAIL%> &nbsp;
-              </td>
-              <td>
-                <%=item.USER_FNAME%> &nbsp;
-              </td>
-              <td>
-                <%=item.USER_LNAME%> &nbsp;
-              </td>     
-              <td>
-                <%=Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: '2-digit'}).format(item.USER_DOB)%> &nbsp;
-              </td>
-              <td>
-                <%=Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: '2-digit'}).format(item.USER_DATEJOIN)%> &nbsp;
-              </td>
-              <td>
-                <%=item.USER_ADMIN%>
-              </td>
-            </tr>
-            <%});%>
-          </table>
-      </div>
+  <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
+</head>
+
+<body>
+  <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
+    <h1 class='text-center'>Ace's eBookstore</h1>
+  </header>
+
+  <div class="container">
+    <h3>User Search Results with Email</h3>
+    <div class="card card-body">
+      <table class="table-bordered">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Email</th>
+          <th class="text-center">First Name</th>
+          <th class="text-center">Last Name</th>
+          <th class="text-center">Birthday</th>
+          <th class="text-center">Date of Creation</th>
+          <th class="text-center">Admin Status</th>
+        </tr>
+        <%data.forEach((item)=>{%>
+          <tr>
+            <td class="text-center">
+              <%=item.USER_ID%> &nbsp;
+            </td>
+            <td>
+              <%=item.USER_EMAIL%> &nbsp;
+            </td>
+            <td>
+              <%=item.USER_FNAME%> &nbsp;
+            </td>
+            <td>
+              <%=item.USER_LNAME%> &nbsp;
+            </td>
+            <td>
+              <%=Intl.DateTimeFormat('en-US', {year: 'numeric' , month: 'long' , day: '2-digit'
+                }).format(item.USER_DOB)%> &nbsp;
+            </td>
+            <td>
+              <%=Intl.DateTimeFormat('en-US', {year: 'numeric' , month: 'long' , day: '2-digit'
+                }).format(item.USER_DATEJOIN)%> &nbsp;
+            </td>
+            <td>
+              <%=item.USER_ADMIN%> &nbsp;
+            </td>
+          </tr>
+          <%});%>
+      </table>
     </div>
-  </body>
+  </div>
+  <br />
+  <div class="container">
+    <h3>Update User Information</h3>
+    <div class="card card-body">
+      <form class="form-inline mb-3" action="/updateuser/" method="post" id="USERupdate">
+        <%data.forEach((item)=>{%>
+          <!--Using 'required' tag on all fields ensures they will be nonempty upon submission.-->
+          <!--ID is marked as 'readonly' with tag so that it will be submitted with form but unchanged.-->
+          <label for="userID">ID</label>
+          <input type="text" name="userID" placeholder="User ID Here" size="255" autocomplete="off"
+            class="form-control mr-2" required id="userID" readonly="readonly" value="<%=item.USER_ID%>" />
+          <br />
+          <label for="userEmail">Email</label>
+          <input type="text" name="userEmail" placeholder="Enter your Email Address" size="255" autocomplete="off"
+            class="form-control mr-2" required id="userEmail" value="<%=item.USER_EMAIL%>" />
+          <br />
+          <label for="userFname">First Name</label>
+          <input type="text" name="userFname" placeholder="Enter your First Name" size="255" autocomplete="off"
+            class="form-control mr-2" required id="userFname" value="<%=item.USER_FNAME%>" />
+          <br />
+          <label for="userLname">Last Name</label>
+          <input type="text" name="userLname" placeholder="Enter your Last Name" size="255" autocomplete="off"
+            class="form-control mr-2" required id="userLname" value="<%=item.USER_LNAME%>" />
+          <br />
+          <label for="userDOB">Birthday</label>
+          <input type="date" name="userDOB" placeholder="Enter your Date of Birth" autocomplete="off"
+            class="form-control mr-2" required id="userDOB" value="<%=item.USER_DOB.toISOString().split('T')[0]%>" />
+          <br />
+          <%});%>
+            <input type="submit" value="UPDATE" class="btn btn-dark" />
+      </form>
+    </div>
+  </div>
+</body>
 </html>
