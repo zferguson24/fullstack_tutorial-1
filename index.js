@@ -75,8 +75,12 @@ app.post("/insertuser", (req, res) => {
 
 // Search eBook Logic
 app.post("/searchebook", (req, res) => {
-  let sql = `SELECT * FROM EBOOK WHERE EBOOK_TITLE LIKE '%${req.body.eBookTitleSearch}%' `;
+  let sql = `SELECT * FROM EBOOK WHERE `;
 
+  // Add EBOOK_TITLE to query if nonempty.
+  if (req.body.eBookTitleSearch != undefined) {
+    sql = sql + `AND EBOOK_TITLE LIKE '%${req.body.eBookTitleSearch}%' `;
+  }
   // Add EBOOK_AUTHOR to query if nonempty.
   if (req.body.eBookAuthorCheck && req.body.eBookAuthorSearch != undefined) {
     sql = sql + `AND EBOOK_AUTHOR LIKE '%${req.body.eBookAuthorSearch}%' `;
@@ -96,6 +100,15 @@ app.post("/searchebook", (req, res) => {
 
   // Order the final output by title of the returned eBooks.
   sql = sql + ` ORDER BY EBOOK_TITLE;`;
+
+  // Remove first instance of AND from query, as it will be incorrect SQL syntax.
+  let sql_length = sql.length;
+  for (let i = 0; i < sql_length; i++) {
+    if (sql.substring(i, i + 3) == `AND`) {
+      sql = sql.substring(0, i - 1) + sql.substring(i + 3, sql_length);
+      break;
+    }
+  }
 
   db.query(sql, (err, result) => {
     if (err) {
