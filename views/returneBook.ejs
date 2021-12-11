@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Ace's eBookstore</title>
+
+  <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
+</head>
+
+<body>
+  <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
+    <h1 class='text-center'>Ace's eBookstore</h1>
+    <div class="media">
+      <h5 class="media-heading text-center">
+        <a href="/">Return to Home Page</a>
+      </h5>
+    </div>
+  </header>
+
+  <div class="container">
+    <h3>Admin eBook Search Results by Title</h3>
+    <div class="card card-body">
+      <table class="table-bordered">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Title</th>
+          <th class="text-center">ISBN</th>
+          <th class="text-center">Author</th>
+          <th class="text-center">Genre</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Publication Date</th>
+        </tr>
+        <%data.forEach((item)=>{%>
+          <tr>
+            <td class="text-center">
+              <%=item.EBOOK_ID%> &nbsp;
+            </td>
+            <td>
+              <%=item.EBOOK_TITLE%> &nbsp;
+            </td>
+            <td>
+              <%=item.EBOOK_ISBN%> &nbsp;
+            </td>
+            <td>
+              <%=item.EBOOK_AUTHOR%> &nbsp;
+            </td>
+            <td>
+              <%=item.EBOOK_GENRE%> &nbsp;
+            </td>
+            <td>
+              $<%=item.EBOOK_PRICE%> &nbsp;
+            </td>
+            <td>
+              <%=Intl.DateTimeFormat('en-US', {year: 'numeric' , month: 'long' , day: '2-digit'
+                }).format(item.EBOOK_PUB) %>
+            </td>
+          </tr>
+          <%});%>
+      </table>
+    </div>
+  </div>
+  <br />
+  <div class="container">
+    <h3>Update eBook Information</h3>
+    <div class="card card-body">
+      <%data.forEach((item)=>{%>
+        <br />
+        <form class="form-inline mb-3" action="/ebookupdate/" method="post" id="EBOOKupdate">
+          <!--Using 'required' tag on all fields ensures they will be nonempty upon submission.-->
+          <!--ID is marked as 'readonly' with tag so that it will be submitted with form but unchanged.-->
+          <label for="ebookID">ID</label>
+          <input type="text" name="ebookID" placeholder="eBook ID Here" size="255" autocomplete="off"
+            class="form-control mr-2" required id="ebookID" readonly="readonly" value="<%=item.EBOOK_ID%>" />
+          <br />
+          <label for="ebookTitle">Title</label>
+          <input type="text" name="ebookTitle" placeholder="Enter the Title of the eBook" size="255" autocomplete="off"
+            class="form-control mr-2" required id="ebookTitle" value="<%=item.EBOOK_TITLE%>" />
+          <br />
+          <label for="ebookISBN">ISBN</label>
+          <input type="text" name="ebookISBN" placeholder="Enter the ISBN of the eBook" size="20" autocomplete="off"
+            class="form-control mr-2" required id="ebookISBN" value="<%=item.EBOOK_ISBN%>" />
+          <br />
+          <label for="ebookAuthor">Author</label>
+          <input type="text" name="ebookAuthor" placeholder="Enter the Author of the eBook" size="255" autocomplete="off"
+            class="form-control mr-2" required id="ebookAuthor" value="<%=item.EBOOK_AUTHOR%>" />
+          <br />
+          <label for="ebookGenre">Genre</label>
+          <input type="text" name="ebookGenre" placeholder="Enter the Genre of the eBook" size="255" autocomplete="off"
+            class="form-control mr-2" required id="ebookGenre" value="<%=item.EBOOK_GENRE%>" />
+          <br />
+          <label for="ebookPrice">Price</label>
+          <input type="number" step="any" name="ebookPrice" placeholder="Enter the price of the eBook" autocomplete="off"
+            class="form-control mr-2" required id="ebookPrice" value="<%=item.EBOOK_PRICE%>" />
+          <br />
+          <label for="ebookDesc">Description</label>
+          <textarea type="text" name="ebookDesc" placeholder="Enter the Description of the eBook" size="20000" required
+            autocomplete="off" class="form-control mr-2" rows="5"><%=item.EBOOK_DESC%></textarea>
+          <br />
+          <label for="ebookPub">Publication Date</label>
+          <input type="date" name="ebookPub" placeholder="Enter the publication date of the eBook" autocomplete="off"
+            class="form-control mr-2" required id="ebookPub" value="<%=item.EBOOK_PUB.toISOString().split('T')[0]%>" />
+          <br />
+          <input type="submit" value="UPDATE" class="btn btn-dark" />
+        </form>
+        <form class="form-inline mb-3" action="/ebookdelete/" method="post" id="EBOOKdelete">
+          <input type="hidden" name="ebookID" placeholder="eBook ID Here" size="255" autocomplete="off"
+            class="form-control mr-2" required id="ebookID" readonly="readonly" value="<%=item.EBOOK_ID%>" />
+          <input type="submit" value="DELETE" class="btn btn-danger" />
+          <br />
+          <%});%>
+    </div>
+  </div>
+</body>
+
+</html>

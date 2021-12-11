@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Ace's eBookstore</title>
+
+  <link type="text/css" rel="stylesheet" href="../public/css/style.css" />
+</head>
+
+<body>
+  <header id="main-header" class="bg-header text-white p-2 mb-3 sticky-top">
+    <h1 class='text-center'>Ace's eBookstore</h1>
+    <div class="media">
+      <h5 class="media-heading text-center">
+        <a href="/">Return to Home Page</a>
+      </h5>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <h2 class="title">
+        eBook Search (Very Secret Admin Page)
+      </h2>
+      <br />
+      <form class="form-inline mb-3" action="/adminsearchebook/" method="post" id="EBOOKadminsearch">
+        <label for="admineBookSearch" class="h4">Search eBooks by Title</label>
+        <input type="text" name="admineBookSearch" placeholder="Enter eBook Title" required autocomplete="off"
+          class="form-control mr-2" />
+        <br />
+        <input type="submit" value="SEARCH" class="btn btn-dark" />
+        <input type="reset" value="RESET" class="btn btn-dark" />
+        <br />
+      </form>
+    </main>
+  </div>
+</body>
+</html>
