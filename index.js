@@ -188,10 +188,10 @@ app.post("/ebookupdate", (req, res) => {
 
 // Admin Delete eBook Logic
 app.post("/ebookdelete", (req, res) => {
-  if (req.body.ebookID == undefined) {
+  if (req.body.ebookID_Delete == undefined) {
     res.send(`No eBook to delete. Please search again.`);
   } else {
-    let sql = `DELETE FROM EBOOK WHERE EBOOK_ID = '${req.body.ebookID}';`
+    let sql = `DELETE FROM EBOOK WHERE EBOOK_ID = '${req.body.ebookID_Delete}';`
     let query = db.query(sql, (err, result) => {
       if (err) {
         throw err;
@@ -259,10 +259,10 @@ app.post("/updateuser", (req, res) => {
 
 // Admin Delete User Logic
 app.post("/deleteuser", (req, res) => {
-  if (req.body.userID == undefined) {
+  if (req.body.userID_Delete == undefined) {
     res.send(`No user to delete. Please search again.`);
   } else {
-    let sql = `DELETE FROM USER WHERE USER_ID = '${req.body.userID}';`
+    let sql = `DELETE FROM USER WHERE USER_ID = '${req.body.userID_Delete}';`
     let query = db.query(sql, (err, result) => {
       if (err) {
         throw err;

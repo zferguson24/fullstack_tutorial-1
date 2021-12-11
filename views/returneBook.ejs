@@ -84,16 +84,16 @@
             class="form-control mr-2" required id="ebookISBN" value="<%=item.EBOOK_ISBN%>" />
           <br />
           <label for="ebookAuthor">Author</label>
-          <input type="text" name="ebookAuthor" placeholder="Enter the Author of the eBook" size="255" autocomplete="off"
-            class="form-control mr-2" required id="ebookAuthor" value="<%=item.EBOOK_AUTHOR%>" />
+          <input type="text" name="ebookAuthor" placeholder="Enter the Author of the eBook" size="255"
+            autocomplete="off" class="form-control mr-2" required id="ebookAuthor" value="<%=item.EBOOK_AUTHOR%>" />
           <br />
           <label for="ebookGenre">Genre</label>
           <input type="text" name="ebookGenre" placeholder="Enter the Genre of the eBook" size="255" autocomplete="off"
             class="form-control mr-2" required id="ebookGenre" value="<%=item.EBOOK_GENRE%>" />
           <br />
           <label for="ebookPrice">Price</label>
-          <input type="number" step="any" name="ebookPrice" placeholder="Enter the price of the eBook" autocomplete="off"
-            class="form-control mr-2" required id="ebookPrice" value="<%=item.EBOOK_PRICE%>" />
+          <input type="number" step="any" name="ebookPrice" placeholder="Enter the price of the eBook"
+            autocomplete="off" class="form-control mr-2" required id="ebookPrice" value="<%=item.EBOOK_PRICE%>" />
           <br />
           <label for="ebookDesc">Description</label>
           <textarea type="text" name="ebookDesc" placeholder="Enter the Description of the eBook" size="20000" required
@@ -106,11 +106,12 @@
           <input type="submit" value="UPDATE" class="btn btn-dark" />
         </form>
         <form class="form-inline mb-3" action="/ebookdelete/" method="post" id="EBOOKdelete">
-          <input type="hidden" name="ebookID" placeholder="eBook ID Here" size="255" autocomplete="off"
-            class="form-control mr-2" required id="ebookID" readonly="readonly" value="<%=item.EBOOK_ID%>" />
+          <input type="hidden" name="ebookID_Delete" placeholder="eBook ID Here" size="255" autocomplete="off"
+            class="form-control mr-2" required id="ebookID_Delete" readonly="readonly" value="<%=item.EBOOK_ID%>" />
           <input type="submit" value="DELETE" class="btn btn-danger" />
           <br />
-          <%});%>
+        </form>
+        <%});%>
     </div>
   </div>
 </body>

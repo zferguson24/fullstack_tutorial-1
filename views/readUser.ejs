@@ -95,12 +95,13 @@
           <input type="submit" value="UPDATE" class="btn btn-dark" />
         </form>
         <form class="form-inline mb-3" action="/deleteuser/" method="post" id="USERdelete">
-          <input type="hidden" name="userID" placeholder="User ID Here" size="255" autocomplete="off"
-            class="form-control mr-2" required id="userID" readonly="readonly" value="<%=item.USER_ID%>" />
+          <input type="hidden" name="userID_Delete" placeholder="User ID Here" size="255" autocomplete="off"
+            class="form-control mr-2" required id="userID_Delete" readonly="readonly" value="<%=item.USER_ID%>" />
           <input type="submit" value="DELETE" class="btn btn-danger" />
           <br />
           <br />
-          <%});%>
+        </form>
+        <%});%>
     </div>
   </div>
 </body>
